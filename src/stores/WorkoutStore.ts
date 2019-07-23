@@ -1,4 +1,5 @@
-import { createContext } from "react";
+// import { createContext } from "react";
+import { RootStore } from "./RootStore";
 
 type WorkoutDay = 'a' | 'b';  // a-day / b-day for rotating exercises on 2 different days
 
@@ -24,7 +25,14 @@ interface WorkoutHistory {
 }
 */ 
 
-class WorkoutStore {
+export class WorkoutStore {
+
+  rootStore: RootStore;
+
+  constructor(rootStore: RootStore) {
+    this.rootStore = rootStore;
+  }
+  
   currentSquat: number; 
   currentBenchPress: number; 
   currentOverheadPress: number; 
@@ -36,4 +44,5 @@ class WorkoutStore {
   history: WorkoutHistory;
 }
 
-export const WorkoutStoreContext = createContext(new WorkoutStore());
+// no longer need this now that we made a RootStore:
+// export const WorkoutStoreContext = createContext(new WorkoutStore());

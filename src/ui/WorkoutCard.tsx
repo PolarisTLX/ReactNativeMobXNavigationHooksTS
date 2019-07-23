@@ -4,17 +4,35 @@ import { StyleSheet, View, Text } from 'react-native';
 interface Props {
   excercise: string;
   repsAndWeight: string;
+  sets: string[];
 }
 
-export const WorkoutCard: React.FC<Props> = ({excercise, repsAndWeight}) => {
+export const WorkoutCard: React.FC<Props> = ({excercise, repsAndWeight, sets}) => {
   return (
     <View style={styles.cardContainer}>
-      <View>
-        <Text>{excercise}</Text>
-        <Text>{repsAndWeight}</Text>
+      <View style={styles.topRow}>
+        <Text style={styles.topRowText}>{excercise}</Text>
+        <Text style={styles.topRowText}>{repsAndWeight}</Text>
       </View>
-      <View>
-        <Text>Bottom</Text>
+      <View style={styles.bottomRow}>
+        {sets.map((set, index) => {
+          if (set === 'x') {
+            return (
+              <View style={[styles.circle, styles.fadedBackground]} key={set + index}>
+                <Text key={set + index}>X</Text>
+              </View>
+            )
+          }
+          if (set === 'x') {
+            return <Text key={set + index}></Text>
+          }
+
+          return (
+            <View style={styles.circle} key={set + index}>
+              <Text style={[styles.whiteText, styles.circleText]}>{set}</Text>
+            </View>
+          );
+        })}
       </View>
     </View>
    );
@@ -26,6 +44,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   topRow: {
+    marginTop: 20,
     flexDirection: "row",
     justifyContent: "space-between"
   },
