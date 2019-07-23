@@ -21,6 +21,7 @@ import {
 
 import { observer } from "mobx-react-lite";
 import { CounterStoreContext } from './src/stores/CounterStore';
+import { Router } from './src/Router';
 
 export const App = observer(() => {
 
@@ -35,6 +36,8 @@ export const App = observer(() => {
       <SafeAreaView>
         <Text style={{ alignSelf: 'center', marginTop: 100, fontSize: 32 }}>{counterStore.count}</Text>
         <Button title="increment" onPress={() => counterStore.count++} />
+
+        <Router />
       </SafeAreaView>
     </Fragment>
   );
