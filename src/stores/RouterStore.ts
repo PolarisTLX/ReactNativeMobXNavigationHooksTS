@@ -13,7 +13,7 @@ export class RouterStore {
     this.rootStore = rootStore;
   }
 
-  @observable screen: Routes = 'CurrentWorkout'
+  @observable screen: Routes = 'WorkoutHistory'
 }
 
 // no longer need this now that we made a RootStore:

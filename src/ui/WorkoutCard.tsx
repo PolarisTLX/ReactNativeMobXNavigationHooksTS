@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import { observer } from 'mobx-react-lite';
 
 interface Props {
   excercise: string;
@@ -7,7 +8,7 @@ interface Props {
   sets: string[];
 }
 
-export const WorkoutCard: React.FC<Props> = ({excercise, repsAndWeight, sets}) => {
+export const WorkoutCard: React.FC<Props> = observer(({excercise, repsAndWeight, sets}) => {
   return (
     <View style={styles.cardContainer}>
       <View style={styles.topRow}>
@@ -36,12 +37,15 @@ export const WorkoutCard: React.FC<Props> = ({excercise, repsAndWeight, sets}) =
       </View>
     </View>
    );
-}
+});
 
 
 const styles = StyleSheet.create({
   cardContainer: {
-    marginBottom: 10
+    // height: 50,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: 'black',
   },
   topRow: {
     marginTop: 20,
