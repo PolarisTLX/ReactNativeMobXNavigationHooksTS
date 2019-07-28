@@ -13,5 +13,9 @@ export const Router = observer(() => {
   const rootStore = useContext(RootStoreContext);
 
   // return routerStore.screen === 'WorkoutHistory' ? <WorkoutHistory /> : <CurrentWorkout />
-  return rootStore.routerStore.screen === 'WorkoutHistory' ? <WorkoutHistory /> : <CurrentWorkout />
+  return rootStore.routerStore.screen === 'WorkoutHistory' ? (
+    <WorkoutHistory />
+  ) : (
+    <CurrentWorkout />
+  );
 });

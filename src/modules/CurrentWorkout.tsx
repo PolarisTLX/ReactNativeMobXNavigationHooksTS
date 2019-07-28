@@ -5,14 +5,18 @@ import { observer } from 'mobx-react-lite';
 import { WorkoutCard } from '../ui/WorkoutCard';
 import { RootStoreContext } from '../stores/RootStore';
 
+interface Props {}
+
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fafafa',
-    margin: 10
+    // flex: 1,
+    backgroundColor: 'orange',
+    // height: 300,
+    padding: 10
   }
 });
 
-export const CurrentWorkout: React.FC = observer(() => {
+export const CurrentWorkout: React.FC<Props> = observer(() => {
 
   // change this since we made a RootStore:
   // const routerStore = React.useContext(RouterStoreContext)
@@ -24,13 +28,28 @@ export const CurrentWorkout: React.FC = observer(() => {
       {/* <WorkoutCard excercise="squat" repsAndWeight="5x5 260" sets={["x", "5", "5", "", "5"]} /> */}
       {rootStore.workoutStore.currentExercises.map(e => {
         return (
-          <WorkoutCard 
-            key={e.exercise}
-            sets={e.sets}
-            exercise={e.exercise}
-            repsAndWeight={`${e.numSets}x${e.reps} ${e.wieght}`}
-          />
-        )
+        <WorkoutCard 
+          onSetPress={setIndex => {
+            const v = e.sets[setIndex];
+
+            let newValue: string;
+
+            if (v === '') {
+              newValue = `${e.reps}`
+            } else if (v === '0') {
+              newValue = '';
+            } else {
+              newValue = `${parseInt(v) - 1}`;
+            }
+
+            e.sets[setIndex] = newValue;
+          }}
+          key={e.exercise}
+          excercise={e.exercise} 
+          repsAndWeight={`${e.numSets}x${e.reps} ${e.weight}`} 
+          sets={e.sets} 
+        />
+        );
       })}
       <Button
         title="Go to Workout History Page"

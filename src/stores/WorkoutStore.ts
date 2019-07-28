@@ -21,7 +21,7 @@ type WorkoutDay = 'a' | 'b';  // a-day / b-day for rotating exercises on 2 diffe
 }
 */ 
 
-interface CurrentExercise {
+export interface CurrentExercise {
   weight: number;
   reps: number;
   numSets: number;

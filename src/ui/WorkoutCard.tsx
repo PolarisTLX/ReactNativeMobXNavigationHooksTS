@@ -1,13 +1,17 @@
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ViewPropsIOS } from 'react-native';
+import { observer } from 'mobx-react-lite';
 
 interface Props {
   excercise: string;
   repsAndWeight: string;
   sets: string[];
+  // below is "type definition for a function"?  
+  // ...because it doesnt return anything / it returns a function instead of some value?:
+  onSetPress: (index: number) => void;
 }
 
-export const WorkoutCard: React.FC<Props> = ({excercise, repsAndWeight, sets}) => {
+export const WorkoutCard: React.FC<Props> = observer(({excercise, repsAndWeight, sets, onSetPress}) => {
   return (
     <View style={styles.cardContainer}>
       <View style={styles.topRow}>
@@ -23,25 +27,34 @@ export const WorkoutCard: React.FC<Props> = ({excercise, repsAndWeight, sets}) =
               </View>
             )
           }
-          if (set === 'x') {
-            return <Text key={set + index}></Text>
+          if (set === '') {
+            return (
+              <TouchableOpacity
+                onPress={() => onSetPress(index)}
+                style={[styles.circle, styles.fadedBackground]}
+                key={set + index}
+              />
+            );
           }
 
           return (
-            <View style={styles.circle} key={set + index}>
+            <TouchableOpacity onPress={() => onSetPress(index)} style={styles.circle} key={set + index}>
               <Text style={[styles.whiteText, styles.circleText]}>{set}</Text>
-            </View>
+            </TouchableOpacity>
           );
         })}
       </View>
     </View>
    );
-}
+});
 
 
 const styles = StyleSheet.create({
   cardContainer: {
-    marginBottom: 10
+    // height: 50,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: 'black',
   },
   topRow: {
     marginTop: 20,
