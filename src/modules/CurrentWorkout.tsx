@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     backgroundColor: 'orange',
-    // height: 300,
+    height: 500,
     padding: 10
   }
 });
@@ -65,7 +65,7 @@ export const CurrentWorkout: React.FC<Props> = observer(() => {
           
         }}
       />
-      <WorkoutTimer onXPress={() => {}} currentTime={rootStore.workoutTimerStore.display} />
+      <WorkoutTimer onXPress={() => rootStore.workoutTimerStore.endTimer()} currentTime={rootStore.workoutTimerStore.display} />
     </View>
   );
 });

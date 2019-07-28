@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   container: {
     // make bottom of the screen:
     position: 'absolute',
-    bottom: -50,
+    bottom: 0,
     left: 0,
     height: 50,
     width: '100%',
