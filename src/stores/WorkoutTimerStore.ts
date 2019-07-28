@@ -31,6 +31,7 @@ export class WorkoutTimerStore {
 
   @action endTimer() {
     this.isRunning = false;
+    this.seconds = 0;
   }
 
   // @computed display() {
