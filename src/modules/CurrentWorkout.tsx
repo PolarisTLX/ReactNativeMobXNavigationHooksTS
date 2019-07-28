@@ -23,6 +23,13 @@ export const CurrentWorkout: React.FC<Props> = observer(() => {
   // const routerStore = React.useContext(RouterStoreContext)
   const rootStore = React.useContext(RootStoreContext);
 
+  // stop the timer if this component gets unmounted:
+  React.useEffect(() => {
+    return () => {
+      rootStore.workoutTimerStore.stopTimer();
+    };
+  }, []);  // [] I think so that it only runs once
+
   return (
     <View style={styles.container}>
       <Text>Current Workout Page</Text>
@@ -66,7 +73,11 @@ export const CurrentWorkout: React.FC<Props> = observer(() => {
         }}
       />
       {rootStore.workoutTimerStore.isRunning ? (
-        <WorkoutTimer onXPress={() => rootStore.workoutTimerStore.endTimer()} currentTime={rootStore.workoutTimerStore.display} />
+        <WorkoutTimer 
+          onXPress={() => rootStore.workoutTimerStore.stopTimer()} 
+          currentTime={rootStore.workoutTimerStore.display} 
+          percent={rootStore.workoutTimerStore.percent}
+        />
       ) : null
       }
     </View>

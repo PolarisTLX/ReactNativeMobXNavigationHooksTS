@@ -29,7 +29,7 @@ export class WorkoutTimerStore {
     this.measure();
   }
 
-  @action endTimer() {
+  @action stopTimer() {
     this.isRunning = false;
     this.seconds = 0;
   }
@@ -41,5 +41,9 @@ export class WorkoutTimerStore {
     const minutes = Math.floor(this.seconds / 60);
     const seconds = this.seconds % 60
     return `${padZero(minutes)}:${padZero(seconds)}`;
+  }
+
+  @computed get percent() {
+    return `${Math.min(100, (this.seconds / 60)*100)}%`
   }
 }
