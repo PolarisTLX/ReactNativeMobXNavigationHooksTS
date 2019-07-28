@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite';
 // import { RouterStoreContext } from '../stores/RouterStore';
 import { WorkoutCard } from '../ui/WorkoutCard';
 import { RootStoreContext } from '../stores/RootStore';
+import { WorkoutTimer } from '../ui/WorkoutTimer';
 
 interface Props {}
 
@@ -30,6 +31,10 @@ export const CurrentWorkout: React.FC<Props> = observer(() => {
         return (
         <WorkoutCard 
           onSetPress={setIndex => {
+
+            // start the timer:
+            rootStore.workoutTimerStore.startTimer();
+            
             const v = e.sets[setIndex];
 
             let newValue: string;
@@ -52,6 +57,7 @@ export const CurrentWorkout: React.FC<Props> = observer(() => {
         );
       })}
       <Button
+        // style={{marginTop: 50 }}
         title="Go to Workout History Page"
         onPress={() => {
           // routerStore.screen = "WorkoutHistory";
@@ -59,6 +65,7 @@ export const CurrentWorkout: React.FC<Props> = observer(() => {
           
         }}
       />
+      <WorkoutTimer onXPress={() => {}} currentTime={rootStore.workoutTimerStore.display} />
     </View>
   );
 });

@@ -22,14 +22,18 @@ export const WorkoutHistory: React.FC = observer(() => {
               exercise: "Squat",
               numSets: 5,
               reps: 5,
-              sets: ["5", "5", "5", "5", "5"],
+              // sets: ["5", "5", "5", "5", "5"],
+              // start off blank until first click:
+              sets: ["", "", "", "", ""],
               weight: 260
             },
             {
               exercise: "Bench Press",
               numSets: 5,
               reps: 5,
-              sets: ["5", "5", "5", "5", "5"],
+              // sets: ["5", "5", "5", "5", "5"],
+              // start off blank until first click:
+              sets: ["", "", "", "", ""],
               weight: 200
             },
             {
