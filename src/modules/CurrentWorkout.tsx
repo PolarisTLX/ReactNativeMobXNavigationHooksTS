@@ -49,6 +49,7 @@ export const CurrentWorkout: React.FC<Props> = observer(() => {
             if (v === '') {
               newValue = `${e.reps}`
             } else if (v === '0') {
+              rootStore.workoutTimerStore.stopTimer();
               newValue = '';
             } else {
               newValue = `${parseInt(v) - 1}`;
