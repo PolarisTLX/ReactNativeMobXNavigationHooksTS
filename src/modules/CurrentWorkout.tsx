@@ -21,7 +21,17 @@ export const CurrentWorkout: React.FC = observer(() => {
   return (
     <View style={styles.container}>
       <Text>Current Workout Page</Text>
-      <WorkoutCard excercise="squat" repsAndWeight="5x5 260" sets={["x", "5", "5", "", "5"]} />
+      {/* <WorkoutCard excercise="squat" repsAndWeight="5x5 260" sets={["x", "5", "5", "", "5"]} /> */}
+      {rootStore.workoutStore.currentExercises.map(e => {
+        return (
+          <WorkoutCard 
+            key={e.exercise}
+            sets={e.sets}
+            exercise={e.exercise}
+            repsAndWeight={`${e.numSets}x${e.reps} ${e.wieght}`}
+          />
+        )
+      })}
       <Button
         title="Go to Workout History Page"
         onPress={() => {
